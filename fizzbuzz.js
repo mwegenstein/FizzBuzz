@@ -1,41 +1,78 @@
-//if you put below the body then won't need document ready
+// //if you put below the body then won't need document ready
 
-/*
-Function
-Input: number
-Output: string "fizzbuzz" or "fizz" or "buzz" or the value of the number 
-*/
+// /*
+// Function
+// Input: number
+// Output: string "fizzbuzz" or "fizz" or "buzz" or the value of the number 
+// */
+
+function promptUser(){
+  var answer = prompt("pick a whole number 1-100");
+  var convertAnswer = +answer; //convert to integer
+  if (verifyNumber(convertAnswer)) {
+    startFizzBuzz(convertAnswer);
+  } else {
+    promptUser();
+  }
+}
+
+function verifyNumber(num) {
+  var result = (typeof num === 'number' && num % 1 === 0);
+  return result;
+}
+
+// ==============================================  Another way of doing the above.
+// var correctnumber = false;
+// while(!correctnumber) {
+//   var answer = prompt("pick a whole number 1-100");
+//   var convertAnswer = +answer; //convert to integer
+//   if (typeof convertAnswer === 'number' && convertAnswer % 1 === 0) {
+//     correctnumber = true;
+//   }
+// }
+// startFizzBuzz(convertAnswer);
+// ==============================================
+
+
 function calculateFizzBuzz(num){
   if (( num%5 === 0) && (num%3 === 0)) {
-    console.log ("fizzbuzz");
     return "fizzbuzz";
   } else if (num%3 === 0) {
-    console.log ("fizz");
     return "fizz";
   } else if (num%5 === 0) {
-    console.log ("buzz");
     return "buzz";
   } else {
-      console.log(num);
-      return num;
+    return num;
   };
 }
 
-//make fizzbuzz viewable on the page
 function append(value) {
   $('body').append('<p>' + value + '</p>');
 }
 
-//test with fizzbuzz
-for (var i = 1; i < 100; i++){
-  var result = calculateFizzBuzz(i);
-  append(result);
+function startFizzBuzz(num) {
+  for (var i = 1; i <= num; i++){
+    var result = calculateFizzBuzz(i);
+    append(result);
+  }
 }
 
-//test to show loop 
-for(var j=200; j<300; j++){
-  append(j);
-}
+promptUser();
+
 
   
 
+
+
+//Block level scope
+
+{
+  var a = 3;
+
+}
+
+// a is undefined here
+
+function() {
+  
+}
